@@ -9,7 +9,7 @@ pipeline {
                 echo "-------------------Clone Stage Done ------------------------------- "
             }
         }
-        stage("clean){
+        stage("clean"){
             steps {
                 script {
                     sh "mvn -Dmaven.test.failure.ignore=true clean"
