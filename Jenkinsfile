@@ -2,7 +2,7 @@
 pipeline {
     agent any
     stages {
-        stage('Cloning project') {
+        stage('Cloning the project') {
             steps {
                 // clone from git and test trigger
                 git branch: 'main', credentialsId: '15abb24f-d15c-4109-b679-858a4caa469f', url: 'https://github.com/kacemch/Devops_kacem.git'
