@@ -2,7 +2,7 @@
 pipeline {
     agent any
     stages {
-        stage('Cloning the project') {
+        stage('Cloning the project github') {
             steps {
                 // clone from git and test trigger
                 git branch: 'main', credentialsId: '15abb24f-d15c-4109-b679-858a4caa469f', url: 'https://github.com/kacemch/Devops_kacem.git'
@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-        stage('deploy to nexus') {
+        stage('deploy to nexus repo') {
             steps {
                 nexusArtifactUploader artifacts: [[artifactId: 'tpAchatProject', classifier: '', file: 'target/tpAchatProject-1.0.jar', type: 'jar']], credentialsId: '56677f07-f6c3-4a6a-a908-ac1777f9a123', groupId: 'com.esprit.examen', nexusUrl: '192.168.56.12:8081/repository/maven-releases/', nexusVersion: 'nexus3', protocol: 'http', repository: 'nexusdeploymentrepo', version: '1.0'
             }
