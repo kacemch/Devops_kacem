@@ -55,10 +55,20 @@ pipeline {
                  script {
                  withDockerRegistry(credentialsId: registryCredential) {
                   dockerImage.push()
+                  }
+                }
+           }
+        }
+        stage('Cleaning up') {
+             steps{
+             sh "docker rmi $registry:$BUILD_NUMBER"
+        }
     }
+    stage('running containers'){
+        steps{
+            sh 'docker-compose up -d'
+        }
     }
-   }
-}
         
     }    
 
