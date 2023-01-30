@@ -12,7 +12,7 @@ services:
       - 3306:3306
 
   spring-boot:
-    image: kacemch/kacem
+    image: kacemch/kacem:40
     container_name: devops_esprit
     ports:
       - 8089:8089
