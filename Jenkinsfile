@@ -1,5 +1,10 @@
 
 pipeline {
+    environment{
+    registry="kacemch/kacem"
+    registryCredential='dockerrepo'
+    dokerImage="devops_esprit"
+}
     agent any
     stages {
         stage('Cloning the project') {
