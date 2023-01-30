@@ -2,7 +2,7 @@
 pipeline {
     environment{
     registry="kacemch/kacem"
-    registryCredential='dockerrepo'
+    registryCredential='83ffc7a1-192e-4250-8139-f45ffdc2bf97'
     dokerImage="devops_esprit"
 }
     agent any
@@ -42,11 +42,23 @@ pipeline {
                 }
             }
         }
-        stage('deploy to nexus repo') {
-            steps {
-                nexusArtifactUploader artifacts: [[artifactId: 'tpAchatProject', classifier: '', file: 'target/tpAchatProject-1.0.jar', type: 'jar']], credentialsId: '3bd88c32-6fe9-4038-a7db-8d97af16bd65', groupId: 'com.esprit.examen', nexusUrl: '192.168.56.12:8081/repository/maven-releases/', nexusVersion: 'nexus3', protocol: 'http', repository: 'nexusdeploymentrepo', version: '1.0'
-            }
-        }
+        stage("docker build") {
+                       steps{
+                         script {
+                            dockerImage = docker.build registry +":$BUILD_NUMBER"
+                       }
+                 }
+       }
+        
+        stage("docker push") {
+              steps{
+                 script {
+                 withDockerRegistry(credentialsId: registryCredential) {
+                  dockerImage.push()
+    }
+    }
+   }
+}
         
     }    
 
