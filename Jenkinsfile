@@ -39,7 +39,7 @@ pipeline {
         }
         stage('deploy to nexus repo') {
             steps {
-                nexusArtifactUploader artifacts: [[artifactId: 'tpAchatProject', classifier: '', file: 'target/tpAchatProject-1.0.jar', type: 'jar']], credentialsId: '56677f07-f6c3-4a6a-a908-ac1777f9a123', groupId: 'com.esprit.examen', nexusUrl: '192.168.56.12:8081/repository/maven-releases/', nexusVersion: 'nexus3', protocol: 'http', repository: 'nexusdeploymentrepo', version: '1.0'
+                nexusArtifactUploader artifacts: [[artifactId: 'tpAchatProject', classifier: '', file: 'target/tpAchatProject-1.0.jar', type: 'jar']], credentialsId: '3bd88c32-6fe9-4038-a7db-8d97af16bd65', groupId: 'com.esprit.examen', nexusUrl: '192.168.56.12:8081/repository/maven-releases/', nexusVersion: 'nexus3', protocol: 'http', repository: 'nexusdeploymentrepo', version: '1.0'
             }
         }
         
